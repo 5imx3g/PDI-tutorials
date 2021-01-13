@@ -25,3 +25,20 @@ PDI 原水壶 Kettle，这里是我学习和练习 PDI 的一些记录。
 ## Tutorials_3
 
 加载 Json 文件，保存到另外一个 Json 文件和数据库表Table_2中。
+* [练习3 B站](https://www.bilibili.com/video/BV1Ky4y1U7iG/)
+
+* [练习3 西瓜视频](https://www.ixigua.com/i6911857625093112320/)
+
+## Tutorials_4
+
+REST接口的访问：通过访问新浪热刺接口，将热点新闻保存到数据库中。
+* [练习4 B站](https://www.bilibili.com/video/BV12K4y157U2)
+
+* [练习4 西瓜视频](https://www.ixigua.com/i6915605345972781568/)
+
+## Tutorials_5
+
+JavaScript 脚本：在 PDI 中使用 JavaScript 脚本处理数据。
+* [练习5 B站](https://www.bilibili.com/video/BV1xX4y1K7WF)
+
+* [练习5 西瓜视频](https://www.ixigua.com/i6916878986651894287/)
