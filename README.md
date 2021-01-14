@@ -42,3 +42,17 @@ JavaScript 脚本：在 PDI 中使用 JavaScript 脚本处理数据。
 * [练习5 B站](https://www.bilibili.com/video/BV1xX4y1K7WF)
 
 * [练习5 西瓜视频](https://www.ixigua.com/i6916878986651894287/)
+
+## Tutorials_6
+
+Java Code 脚本：在 PDI 中使用 Java Code 脚本处理数据。
+* [练习6 B站](https://www.bilibili.com/video/BV1Wt4y1z7nH/)
+
+* [练习6 西瓜视频](https://www.bilibili.com/video/BV1Wt4y1z7nH/)
+
+## Tutorials_7
+
+任务处理：在 PDI 中通过任务执行转换。
+* [练习7 B站](https://www.bilibili.com/video/BV1xX4y1K7WF)
+
+* [练习7 西瓜视频](https://www.ixigua.com/i6916878986651894287/)
