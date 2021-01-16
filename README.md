@@ -53,6 +53,20 @@ Java Code 脚本：在 PDI 中使用 Java Code 脚本处理数据。
 ## Tutorials_7
 
 任务处理：在 PDI 中通过任务执行转换。
-* [练习7 B站](https://www.bilibili.com/video/BV1xX4y1K7WF)
+* [练习7 B站](https://www.bilibili.com/video/BV1D5411n7nw/)
 
-* [练习7 西瓜视频](https://www.ixigua.com/i6916878986651894287/)
+* [练习7 西瓜视频](https://www.ixigua.com/i6917614317328466432/)
+
+## Tutorials_8
+
+任务处理：在 PDI 中通过任务执行转换。
+* [练习8 B站](https://www.bilibili.com/video/BV1A5411H78J/)
+
+* [练习8 西瓜视频](https://www.ixigua.com/i6918010742113305088/)
+
+## Tutorials_9
+
+参数应用：在 PDI 中如何使用参数。
+* [练习9 B站](https://www.bilibili.com/video/BV1A5411H78J/)
+
+* [练习9 西瓜视频](https://www.ixigua.com/i6918010742113305088/)
