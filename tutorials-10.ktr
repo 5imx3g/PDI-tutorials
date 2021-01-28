@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tutorials-6</name>
+    <name>tutorials-10</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -427,10 +427,10 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/01/12 19:25:16.399</created_date>
+    <created_date>2021/01/24 21:08:53.690</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/01/12 19:25:16.399</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2021/01/24 21:08:53.690</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
@@ -501,167 +501,20 @@
   <order>
     <hop>
       <from>生成记录</from>
-      <to>Java 代码</to>
+      <to>Switch / case</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Java 代码</from>
-      <to>插入 / 更新</to>
+      <from>Switch / case</from>
+      <to>写日志</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Switch / case</from>
+      <to>执行SQL脚本</to>
       <enabled>Y</enabled>
     </hop>
   </order>
-  <step>
-    <name>Java 代码</name>
-    <type>UserDefinedJavaClass</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <definitions>
-      <definition>
-        <class_type>TRANSFORM_CLASS</class_type>
-        <class_name>Processor</class_name>
-        <class_source>public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
-  if (first) {
-    first = false;
-
-    /* TODO: Your code here. (Using info fields)
-
-    FieldHelper infoField = get(Fields.Info, "info_field_name");
-
-    RowSet infoStream = findInfoRowSet("info_stream_tag");
-
-    Object[] infoRow = null;
-
-    int infoRowCount = 0;
-
-    // Read all rows from info step before calling getRow() method, which returns first row from any
-    // input rowset. As rowMeta for info and input steps varies getRow() can lead to errors.
-    while((infoRow = getRowFrom(infoStream)) != null){
-
-      // do something with info data
-      infoRowCount++;
-    }
-    */
-  }
-
-  Object[] r = getRow();
-
-  if (r == null) {
-    setOutputDone();
-    return false;
-  }
-
-  // It is always safest to call createOutputRow() to ensure that your output row's Object[] is large
-  // enough to handle any new fields you are creating in this step.
-  r = createOutputRow(r, data.outputRowMeta.size());
-
-  /* TODO: Your code here. (See Sample)
-
-  // Get the value from an input field
-  String foobar = get(Fields.In, "a_fieldname").getString(r);
-
-  foobar += "bar";
-    
-  // Set a value in a new output field
-  get(Fields.Out, "output_fieldname").setValue(r, foobar);
-
-  */
-	String id = get(Fields.In, "id").getString(r);
-	id = "JavaCode 2322";
-	get(Fields.Out, "id").setValue(r, id);
-  // Send the row on to the next step.
-  putRow(data.outputRowMeta, r);
-
-  return true;
-}
-</class_source>
-      </definition>
-    </definitions>
-    <fields>
-      <field>
-        <field_name>id</field_name>
-        <field_type>String</field_type>
-        <field_length>-1</field_length>
-        <field_precision>-1</field_precision>
-      </field>
-      <field>
-        <field_name>code</field_name>
-        <field_type>String</field_type>
-        <field_length>-1</field_length>
-        <field_precision>-1</field_precision>
-      </field>
-    </fields>
-    <clear_result_fields>N</clear_result_fields>
-    <info_steps/>
-    <target_steps/>
-    <usage_parameters/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>插入 / 更新</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>PIDDemo</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema/>
-      <table>Table_2</table>
-      <key>
-        <name>id</name>
-        <field>code</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>code</name>
-        <rename>id</rename>
-        <update>Y</update>
-      </value>
-      <value>
-        <name>title</name>
-        <rename>value</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>768</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
   <step>
     <name>生成记录</name>
     <type>RowGenerator</type>
@@ -675,31 +528,19 @@
     </partitioning>
     <fields>
       <field>
-        <name>id</name>
+        <name>val</name>
         <type>String</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif>Random()</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>value</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2</nullif>
+        <nullif>Y</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
       </field>
     </fields>
-    <limit>3</limit>
+    <limit>1</limit>
     <never_ending>N</never_ending>
     <interval_in_ms>5000</interval_in_ms>
     <row_time_field>now</row_time_field>
@@ -714,7 +555,123 @@
     </remotesteps>
     <GUI>
       <xloc>304</xloc>
-      <yloc>240</yloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>写日志</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage/>
+    <fields>
+      </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Switch / case</name>
+    <type>SwitchCase</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fieldname>val</fieldname>
+    <use_contains>N</use_contains>
+    <case_value_type>String</case_value_type>
+    <case_value_format/>
+    <case_value_decimal/>
+    <case_value_group/>
+    <default_target_step/>
+    <cases>
+      <case>
+        <value>Y</value>
+        <target_step>写日志</target_step>
+      </case>
+      <case>
+        <value>N</value>
+        <target_step>执行SQL脚本</target_step>
+      </case>
+    </cases>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>执行SQL脚本</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>PIDDemo</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <quoteString>N</quoteString>
+    <sql>Create table Table_3(
+   ID INT PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   DESC        CHAR(50)
+)</sql>
+    <set_params>N</set_params>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

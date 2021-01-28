@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>tutorials-6</name>
+    <name>tutorials-9</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
     <directory>/</directory>
     <parameters>
+      <parameter>
+        <name>dbUrl</name>
+        <default_value/>
+        <description/>
+      </parameter>
     </parameters>
     <log>
       <trans-log-table>
@@ -427,16 +433,16 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/01/12 19:25:16.399</created_date>
+    <created_date>2021/01/16 21:59:01.908</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/01/12 19:25:16.399</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2021/01/16 21:59:01.908</modified_date>
+    <key_for_session_key/>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>PIDDemo</name>
+    <name>PIDDemo2</name>
     <server/>
     <type>GENERIC</type>
     <access>Native</access>
@@ -454,7 +460,7 @@
       </attribute>
       <attribute>
         <code>CUSTOM_URL</code>
-        <attribute>jdbc:sqlite:D:\code\gitee\PDI-tutorials\PID_DB_Demo.db</attribute>
+        <attribute>${dbUrl}</attribute>
       </attribute>
       <attribute>
         <code>DATABASE_DIALECT_ID</code>
@@ -500,19 +506,14 @@
   </connection>
   <order>
     <hop>
-      <from>生成记录</from>
-      <to>Java 代码</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Java 代码</from>
-      <to>插入 / 更新</to>
+      <from>表输入</from>
+      <to>写日志</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Java 代码</name>
-    <type>UserDefinedJavaClass</type>
+    <name>表输入</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -521,133 +522,62 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <definitions>
-      <definition>
-        <class_type>TRANSFORM_CLASS</class_type>
-        <class_name>Processor</class_name>
-        <class_source>public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException {
-  if (first) {
-    first = false;
-
-    /* TODO: Your code here. (Using info fields)
-
-    FieldHelper infoField = get(Fields.Info, "info_field_name");
-
-    RowSet infoStream = findInfoRowSet("info_stream_tag");
-
-    Object[] infoRow = null;
-
-    int infoRowCount = 0;
-
-    // Read all rows from info step before calling getRow() method, which returns first row from any
-    // input rowset. As rowMeta for info and input steps varies getRow() can lead to errors.
-    while((infoRow = getRowFrom(infoStream)) != null){
-
-      // do something with info data
-      infoRowCount++;
-    }
-    */
-  }
-
-  Object[] r = getRow();
-
-  if (r == null) {
-    setOutputDone();
-    return false;
-  }
-
-  // It is always safest to call createOutputRow() to ensure that your output row's Object[] is large
-  // enough to handle any new fields you are creating in this step.
-  r = createOutputRow(r, data.outputRowMeta.size());
-
-  /* TODO: Your code here. (See Sample)
-
-  // Get the value from an input field
-  String foobar = get(Fields.In, "a_fieldname").getString(r);
-
-  foobar += "bar";
-    
-  // Set a value in a new output field
-  get(Fields.Out, "output_fieldname").setValue(r, foobar);
-
-  */
-	String id = get(Fields.In, "id").getString(r);
-	id = "JavaCode 2322";
-	get(Fields.Out, "id").setValue(r, id);
-  // Send the row on to the next step.
-  putRow(data.outputRowMeta, r);
-
-  return true;
-}
-</class_source>
-      </definition>
-    </definitions>
-    <fields>
-      <field>
-        <field_name>id</field_name>
-        <field_type>String</field_type>
-        <field_length>-1</field_length>
-        <field_precision>-1</field_precision>
-      </field>
-      <field>
-        <field_name>code</field_name>
-        <field_type>String</field_type>
-        <field_length>-1</field_length>
-        <field_precision>-1</field_precision>
-      </field>
-    </fields>
-    <clear_result_fields>N</clear_result_fields>
-    <info_steps/>
-    <target_steps/>
-    <usage_parameters/>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>512</xloc>
-      <yloc>240</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>插入 / 更新</name>
-    <type>InsertUpdate</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>PIDDemo</connection>
-    <commit>100</commit>
-    <update_bypassed>N</update_bypassed>
-    <lookup>
-      <schema/>
-      <table>Table_2</table>
-      <key>
-        <name>id</name>
-        <field>code</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
+    <connection>PIDDemo2</connection>
+    <sql>select code, title from Table_2</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cached_row_meta_active>N</cached_row_meta_active>
+    <row-meta>
+      <value-meta>
+        <type>Integer</type>
+        <storagetype>normal</storagetype>
         <name>code</name>
-        <rename>id</rename>
-        <update>Y</update>
-      </value>
-      <value>
+        <length>9</length>
+        <precision>0</precision>
+        <origin>表输入</origin>
+        <comments>code</comments>
+        <conversion_Mask>####0;-####0</conversion_Mask>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>zh_CN</date_format_locale>
+        <date_format_timezone>Asia/Shanghai</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+      <value-meta>
+        <type>String</type>
+        <storagetype>normal</storagetype>
         <name>title</name>
-        <rename>value</rename>
-        <update>Y</update>
-      </value>
-    </lookup>
+        <length>2147483647</length>
+        <precision>-1</precision>
+        <origin>表输入</origin>
+        <comments>title</comments>
+        <conversion_Mask/>
+        <decimal_symbol>.</decimal_symbol>
+        <grouping_symbol>,</grouping_symbol>
+        <currency_symbol/>
+        <trim_type>none</trim_type>
+        <case_insensitive>N</case_insensitive>
+        <collator_disabled>Y</collator_disabled>
+        <collator_strength>0</collator_strength>
+        <sort_descending>N</sort_descending>
+        <output_padding>N</output_padding>
+        <date_format_lenient>N</date_format_lenient>
+        <date_format_locale>zh_CN</date_format_locale>
+        <date_format_timezone>Asia/Shanghai</date_format_timezone>
+        <lenient_string_to_number>N</lenient_string_to_number>
+      </value-meta>
+    </row-meta>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -657,14 +587,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>768</xloc>
-      <yloc>240</yloc>
+      <xloc>416</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>生成记录</name>
-    <type>RowGenerator</type>
+    <name>写日志</name>
+    <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -673,37 +603,19 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <loglevel>log_level_basic</loglevel>
+    <displayHeader>Y</displayHeader>
+    <limitRows>N</limitRows>
+    <limitRowsNumber>0</limitRowsNumber>
+    <logmessage/>
     <fields>
       <field>
-        <name>id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>Random()</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <name>title</name>
       </field>
       <field>
-        <name>value</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>2</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
+        <name>code</name>
       </field>
     </fields>
-    <limit>3</limit>
-    <never_ending>N</never_ending>
-    <interval_in_ms>5000</interval_in_ms>
-    <row_time_field>now</row_time_field>
-    <last_time_field>FiveSecondsAgo</last_time_field>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -713,8 +625,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>240</yloc>
+      <xloc>656</xloc>
+      <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
