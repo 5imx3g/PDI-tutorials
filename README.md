@@ -2,6 +2,9 @@
 
 PDI 原水壶 Kettle，这里是我学习和练习 PDI 的一些记录。
 
+* [Gitee 仓库](https://gitee.com/techcave/pdi-tutorials)
+* [github 仓库](https://github.com/5imx3g/PDI-tutorials)
+
 
 官网：https://www.hitachivantara.com/en-hk/products/data-management-analytics/pentaho-platform/pentaho-data-integration.html
 
@@ -82,16 +85,16 @@ Java Code 脚本：在 PDI 中使用 Java Code 脚本处理数据。
 
 同步执行：如何同步执行转换
 
-* [练习9 B站](https://www.bilibili.com/video/BV1A5411H78J/)
+* [练习11 B站](https://www.bilibili.com/video/BV16r4y1K7h2//)
 
-* [练习9 西瓜视频](https://www.ixigua.com/i6918010742113305088/)
+* [练习11 西瓜视频](https://www.bilibili.com/video/BV1Zt4y1q79K/)
 ## Tutorials_12
 
 二次开发： 二次开发环境搭建
 
-* [练习9 B站](https://www.bilibili.com/video/BV1A5411H78J/)
+* [练习12 B站](https://www.bilibili.com/video/BV1Zt4y1q79K/)
 
-* [练习9 西瓜视频](https://www.ixigua.com/i6918010742113305088/)
+* [练习12 西瓜视频](https://www.ixigua.com/i6922975172697784832/)
 
 先手动将开发库添加到本地仓库：
 
